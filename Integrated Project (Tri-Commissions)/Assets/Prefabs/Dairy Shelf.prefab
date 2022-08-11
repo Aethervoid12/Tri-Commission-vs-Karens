@@ -706,6 +706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7719582033408447977}
+  - component: {fileID: 4131149584152602444}
   m_Layer: 0
   m_Name: Dairy Shelf
   m_TagString: Untagged
@@ -738,6 +739,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &4131149584152602444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947548276513836883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09409508, y: 0.2740103, z: 0.38264275}
+  m_Center: {x: -0.045912944, y: 0.13643344, z: -0.008357523}
 --- !u!1 &7309889851106318161
 GameObject:
   m_ObjectHideFlags: 0
