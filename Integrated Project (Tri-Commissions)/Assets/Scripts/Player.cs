@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
                 Debug.Log(hitInfo.transform.name);
                 if (hitInfo.transform.tag == "Cheese")
                 {
-                    hitInfo.transform.GetComponent<Collectible>().Collected();
+                    //hitInfo.transform.GetComponent<Collectible>().Collected();
                 }
             }
         }
@@ -162,14 +162,15 @@ public class Player : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.tag == "Cheese")
+        if(collision.gameObject.tag == "Cheese")
         {
-            if(startedFlashing == false)
-            {
-                startedFlashing = true;
-                StartCoroutine(FlashObject());
-            }
+            collision.gameObject.GetComponent<Collectible>().EnterCollectible();
         }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        collision.gameObject.GetComponent<Collectible>().ExitCollectible();
     }
 
     /// <summary>
