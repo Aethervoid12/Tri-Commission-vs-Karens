@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
 
     public GameObject pauseScreen;
 
+    public GameObject cheese;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -73,11 +75,11 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
             {
                 Debug.Log(hitInfo.transform.name);
-                if (hitInfo.transform.tag == "Collectibles")
+                if (hitInfo.transform.tag == "Cheese")
                 {
                     if (interact)
                     {
-
+                        cheese.SetActive(false);
                     }
                 }
             }
