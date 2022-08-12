@@ -141,10 +141,6 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
             {
                 Debug.Log(hitInfo.transform.name);
-                if (hitInfo.transform.tag == "Cheese")
-                {
-                    //hitInfo.transform.GetComponent<Collectible>().Collected();
-                }
             }
         }
 
@@ -164,13 +160,13 @@ public class Player : MonoBehaviour
         Debug.Log(collision.gameObject.name);
         if(collision.gameObject.tag == "Cheese")
         {
-            collision.gameObject.GetComponent<Collectible>().EnterCollectible();
+            
         }
     }
 
     void OnCollisionExit(Collision collision)
     {
-        collision.gameObject.GetComponent<Collectible>().ExitCollectible();
+
     }
 
     /// <summary>
