@@ -64,11 +64,25 @@ public class Player : MonoBehaviour
             transform.position += movementVector * moveSpeed * Time.deltaTime;
 
             // Apply the rotation multiplied by the rotation speed.
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationInput * rotationSpeed * Time.deltaTime);
+            //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationInput * rotationSpeed * Time.deltaTime);
             //playerCamera.transform.rotation = Quaternion.Euler(playerCamera.transform.rotation.eulerAngles + headRotationInput * rotationSpeed * Time.deltaTime);
 
             Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.position + (playerCamera.transform.forward * interactionDistance));
+
+            RaycastHit hitInfo;
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
+            {
+                Debug.Log(hitInfo.transform.name);
+                if (hitInfo.transform.tag == "Collectibles")
+                {
+                    if (interact)
+                    {
+
+                    }
+                }
+            }
         }
+
         interact = false;
     }
 
@@ -107,5 +121,6 @@ public class Player : MonoBehaviour
     {
         interact = true;
     }
+    
 
 }
