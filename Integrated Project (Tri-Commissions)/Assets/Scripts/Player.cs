@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
 
     public float y;
 
+    public GameObject playerTransform;
+
     [HideInInspector] public StaminaController _staminaController;
 
     void Start()
@@ -155,14 +157,7 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <param name="collision">Holds the information of the collision.</param>
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-        if(collision.gameObject.tag == "Cheese")
-        {
-            
-        }
-    }
+    
 
     void OnCollisionExit(Collision collision)
     {
