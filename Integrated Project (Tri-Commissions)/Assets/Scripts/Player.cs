@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         {
             moveSpeed = 5;
             _staminaController.weAreSprinting = false;
-            Debug.Log("You are no longer sprinting");
+     
         }
         else
         {
