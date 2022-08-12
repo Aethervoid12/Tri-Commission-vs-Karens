@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Integrated Project (Tri-Commissions)/Assets/Prefabs/Camera.prefab.meta
 guid: ae9a9fd5d5daf504388a71ee2e3ef000
 PrefabImporter:
+========
+guid: 3512db856b7e9964995afe0df43d722d
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> 7914f5dbecbcdb9c9629a36d9596224e18bccbce:Integrated Project (Tri-Commissions)/Assets/Horror Ambient Sounds Pack.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
