@@ -159,6 +159,18 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <param name="collision">Holds the information of the collision.</param>
 
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.tag == "Cheese")
+        {
+            if(startedFlashing == false)
+            {
+                startedFlashing = true;
+                StartCoroutine(FlashObject());
+            }
+        }
+    }
 
     /// <summary>
     /// Called when the Look action is detected.
