@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The speed at which the player rotates
     /// </summary>
-    float rotationSpeed = 60f;
+    float rotationSpeed = 180f;
 
     /// <summary>
     /// Tracks whether the player is dead or not.
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
         {
             moveSpeed = 5;
             _staminaController.weAreSprinting = false;
-     
+
         }
         else
         {
@@ -121,70 +121,60 @@ public class Player : MonoBehaviour
         }
         if (!isDead)
         {
-            // Create a new Vector3
-            Vector3 movementVector = Vector3.zero;
-
-            // Add the forward direction of the player multiplied by the user's up/down input.
-            movementVector += transform.forward * movementInput.y;
-
-            // Add the right direction of the player multiplied by the user's right/left input.
-            movementVector += transform.right * movementInput.x;
-
-            // Apply the movement vector multiplied by movement speed to the player's position.
-            transform.position += movementVector * moveSpeed * Time.deltaTime;
-
-            // Apply the rotation multiplied by the rotation speed.
-            //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationInput * rotationSpeed * Time.deltaTime);
-            //playerCamera.transform.rotation = Quaternion.Euler(playerCamera.transform.rotation.eulerAngles + headRotationInput * rotationSpeed * Time.deltaTime);
+            GatherInput();
+            Look();
 
             RaycastHit hitInfo;
-            if(Physics.Raycast(transform.position,transform.forward,out hitInfo, interactionDistance))
+            if (Physics.Raycast(transform.position, transform.forward, out hitInfo, interactionDistance))
             {
                 Debug.Log(hitInfo.transform.name);
             }
         }
 
         interact = false;
-        
+
         var vel = GetComponent<Rigidbody>().velocity.magnitude;
 
     }
+    //execute move function
+    private void FixedUpdate()
+    {
+        if (!isDead)
+        {
+            Move();
+        }
+    }
+
+    //gather vector to rotate the player
+    private void GatherInput()
+    {
+        headRotationInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    }
+    //Apply the rotation multiplied by the rotation speed.
+    private void Look()
+    {
+        if (headRotationInput == Vector3.zero) return;
+
+        var rot = Quaternion.LookRotation(headRotationInput.ToIso(), Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, rotationSpeed * Time.deltaTime);
+    }
+    // Apply the movement vector multiplied by movement speed to the player's position.
+    private void Move()
+    {
+        rb.MovePosition(transform.position + transform.forward * headRotationInput.normalized.magnitude * moveSpeed * Time.deltaTime);
+    }
+
 
     /// <summary>
     /// Called when the object collides with another object.
     /// </summary>
     /// <param name="collision">Holds the information of the collision.</param>
 
-    
+
 
     void OnCollisionExit(Collision collision)
     {
 
-    }
-
-    /// <summary>
-    /// Called when the Look action is detected.
-    /// </summary>
-    /// <param name="value"></param>
-    void OnLook(InputValue value)
-    {
-        if (!isDead)
-        {
-            rotationInput.y = value.Get<Vector2>().x;
-            headRotationInput.x = value.Get<Vector2>().y * -1;
-        }
-    }
-
-    /// <summary>
-    /// Called when the Move action is detected.
-    /// </summary>
-    /// <param name="value"></param>
-    void OnMove(InputValue value)
-    {
-        if (!isDead)
-        {
-            movementInput = value.Get<Vector2>();
-        }
     }
 
     void OnFire()
@@ -208,4 +198,9 @@ public class Player : MonoBehaviour
     }
 
 
+}
+public static class Helpers
+{
+    private static Matrix4x4 _isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+    public static Vector3 ToIso(this Vector3 input) => _isoMatrix.MultiplyPoint3x4(input);
 }
