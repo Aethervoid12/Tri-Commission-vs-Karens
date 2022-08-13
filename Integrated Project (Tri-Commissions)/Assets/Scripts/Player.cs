@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
     float interactionDistance = 3f;
 
-    bool interact = false;
+    bool interact; 
 
     Vector3 headRotationInput;
 
@@ -137,20 +137,30 @@ public class Player : MonoBehaviour
             //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationInput * rotationSpeed * Time.deltaTime);
             //playerCamera.transform.rotation = Quaternion.Euler(playerCamera.transform.rotation.eulerAngles + headRotationInput * rotationSpeed * Time.deltaTime);
 
-            Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.position + (playerCamera.transform.forward * interactionDistance));
-
-            RaycastHit hitInfo;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
-            {
-                Debug.Log(hitInfo.transform.name);
-            }
         }
 
-        interact = false;
         
         var vel = GetComponent<Rigidbody>().velocity.magnitude;
-
+        
     }
+
+    private void Raycast()
+    {
+        // Draw a line that mimics the raycast. For debugging purposes
+        Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.position + (playerCamera.transform.forward * interactionDistance));
+        // Create local RaycastHit variable to store the raycast information.
+        RaycastHit hitInfo;
+
+        //Check if the ray hits any object 
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
+        {
+            // Print the name of the object hit. For debugging purposes.
+            Debug.Log(hitInfo.transform.name);
+        }
+        interact = false;
+    }
+
+    
 
     /// <summary>
     /// Called when the object collides with another object.
