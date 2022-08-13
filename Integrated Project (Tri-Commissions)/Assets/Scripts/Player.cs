@@ -137,10 +137,8 @@ public class Player : MonoBehaviour
             //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationInput * rotationSpeed * Time.deltaTime);
             //playerCamera.transform.rotation = Quaternion.Euler(playerCamera.transform.rotation.eulerAngles + headRotationInput * rotationSpeed * Time.deltaTime);
 
-            Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.position + (playerCamera.transform.forward * interactionDistance));
-
             RaycastHit hitInfo;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
+            if(Physics.Raycast(transform.position,transform.forward,out hitInfo, interactionDistance))
             {
                 Debug.Log(hitInfo.transform.name);
             }
