@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    private Outline outline;
     public MeshRenderer myRenderer;
     public Color[] newColors;
     private int colorIndex = 0;
