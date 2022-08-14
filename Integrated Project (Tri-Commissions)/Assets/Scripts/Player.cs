@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     public GameObject pauseScreen;
 
-    public GameObject cheese;
+    public GameObject itemCollect;
 
     public Vector3 jump;
 
@@ -119,11 +119,23 @@ public class Player : MonoBehaviour
         {
             Debug.Log("You are sprinting");
         }
+
         if (!isDead)
         {
             GatherInput();
             Look();
+        }
+        
 
+
+        var vel = GetComponent<Rigidbody>().velocity.magnitude;
+
+    }
+
+    public void RayCasting()
+    {
+        if (!isDead)
+        {
             RaycastHit hitInfo;
             if (Physics.Raycast(transform.position, transform.forward, out hitInfo, interactionDistance))
             {
@@ -131,20 +143,19 @@ public class Player : MonoBehaviour
 
                 if (hitInfo.transform.tag == "Collectible")
                 {
-                    if (interact)
+                    if(interact)
                     {
-                        hitInfo.transform.GetComponent<Collectible>().Collected();
-                        Debug.Log("Interacted");
+                        hitInfo.transform.GetComponent<Collectible>().DestroyCollectible();
+                        Debug.Log("Collectible destroyed");
                     }
+
                 }
             }
             interact = false;
         }
-
-
-        var vel = GetComponent<Rigidbody>().velocity.magnitude;
-
     }
+
+
     //execute move function
     private void FixedUpdate()
     {
@@ -180,12 +191,6 @@ public class Player : MonoBehaviour
     /// <param name="collision">Holds the information of the collision.</param>
 
 
-
-    void OnCollisionExit(Collision collision)
-    {
-
-    }
-
     void OnFire()
     {
         interact = true;
@@ -204,6 +209,11 @@ public class Player : MonoBehaviour
         _staminaController.Sprinting();
         // right after we apply the double speed or whatever, we set the bool to true so it can't do it over and over again.
         Debug.Log("Player is sprinting");
+    }
+
+    public void OnInteract()
+    {
+        interact = true;
     }
 
 
