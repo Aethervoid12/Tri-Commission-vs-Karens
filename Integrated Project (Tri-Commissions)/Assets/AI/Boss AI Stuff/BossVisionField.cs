@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BossVisionField : MonoBehaviour
 {
-    public BossAI bossAttachedAI;
+    public BossAI attachedAI;
 
     private void OnTriggerExit(Collider other)
     {
         if(other.tag == "Player")
         {
-            bossAttachedAI.BossSeePlayer(null);
+            attachedAI.SeePlayer(null);
         }
     }
 
@@ -18,7 +18,17 @@ public class BossVisionField : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            bossAttachedAI.BossSeePlayer(other.transform);
+            attachedAI.SeePlayer(other.transform);
+            Debug.Log("Player detected");
+        }
+    }
+
+        private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            attachedAI.SeePlayer(other.transform);
+            Debug.Log("Player detected");
         }
     }
 }
