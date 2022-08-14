@@ -7,29 +7,23 @@ public class BossAI : MonoBehaviour
     public string currentState;
     public string nextState;
 
-    private UnityEngine.AI.NavMeshAgent bossAgent;
-    public UnityEngine.AI.NavMeshAgent agentComponent;
+    public float idleTime;
 
-    // When the AI detects that it is within 1f away from the player it will change to atttack scene.
-    private float attackDistance = 1f; 
-    
-    //player is the thing for the AI to chase 
-    [SerializeField]
-    Transform thingToChase;
+    public float attackDistance = 1f;
 
-    private void Awake()
-    {
-        //Identifying if the AI has navmeshagent to walk around the navmesh
-        agentComponent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-    }
+    private UnityEngine.AI.NavMeshAgent agent;
+
+    public Transform[] checkpoints;
+
+    private int currentCheckpointIndex; 
+
+    private Transform playerToChase;
 
     // Start is called before the first frame update
     private void Start()
-    {   
-        //Identifying if the AI has navmeshagent to walk around the navmesh
-        bossAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        currentState = "Chase";
-        //At the starting the currrent and next state is the same
+    {
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        currentState = "Idle";
         nextState = currentState;
         SwitchState();
     }
@@ -37,70 +31,95 @@ public class BossAI : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //If current state and next state is different, the state will change to next stage. Else it will remain unchange
         if(currentState != nextState)
         {
             currentState = nextState;
         }
     }
-
-    //Will play current state, either chase or attack
     void SwitchState()
     {
         StartCoroutine(currentState);
 
     }
-    // When the current state is chase
-    IEnumerator Chase()
+    public void BossSeePlayer(Transform player)
     {
-        while(currentState == "Chase")
+        playerToChase = player;
+        nextState = "Chase";
+    }
+
+    IEnumerator Idle()
+    {
+        GetComponent<Animator>().SetTrigger("isIdle");
+        while(currentState == "Idle")
         {
-            // Will play the animation for chasing player
-            GetComponent<Animator>().SetTrigger("isChasing");
+            yield return new WaitForSeconds(idleTime);
 
-            // Will go to player position
-            agentComponent.SetDestination(thingToChase.position);
-
-            // When the player is present in the area
-            if (thingToChase != null)
-            {
-
-                yield return null;
-                
-                // If the AI is within 1f distance from the player, it will start attacking the player
-                if(bossAgent.remainingDistance <= attackDistance)
-                {
-                    nextState = "Attack";
-                    // Play animation to attack player
-                    GetComponent<Animator>().SetTrigger("isAttacking");
-                    
-                }
-            }
-            
+            nextState = "Patrol";
 
         }
         SwitchState();
     }
-    //When the current state is attack
+    IEnumerator Patrol()
+    {
+        GetComponent<Animator>().SetTrigger("isPatrolling");
+        agent.SetDestination(checkpoints[currentCheckpointIndex].position);
+        bool hasReached = false;
+
+        while(currentState == "Patrol")
+        {
+            yield return null;
+            if(!hasReached)
+            {
+                if(agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    hasReached = true;
+
+                    nextState = "Idle";
+
+                    ++currentCheckpointIndex;
+
+                    if (currentCheckpointIndex >= checkpoints.Length)
+                    {
+                        currentCheckpointIndex = 0;
+                    }
+                }
+            }
+        }
+        SwitchState();
+    }
+    IEnumerator Chase()
+    {
+        GetComponent<Animator>().SetTrigger("isChasing");
+        while(currentState == "Chase")
+        {
+            yield return null;
+            if(playerToChase != null)
+            {
+                agent.SetDestination(playerToChase.position);
+            }
+            else if(agent.remainingDistance <= attackDistance)
+            {
+                nextState = "Attack";
+            }
+            else
+            {
+                nextState = "Idle";
+
+            }
+        }
+        SwitchState();
+    }
+
     IEnumerator Attack()
     {
-        
+        GetComponent<Animator>().SetTrigger("isAttacking");
         while(currentState == "Attack")
         {
-            // When the AI is attacking, animation for attack will start
-            GetComponent<Animator>().SetTrigger("isAttacking");
-
-            // Will still follow the player even when attacking.
-            agentComponent.SetDestination(thingToChase.position);
-            
             yield return null;
-
-            // If the remaining distance is larger than the attack distance, the state and animation will change to chase
-            if(bossAgent.remainingDistance >= attackDistance)
-            {   
+            
+            if(agent.remainingDistance <= attackDistance)
+            {
                 nextState = "Chase";
-                GetComponent<Animator>().SetTrigger("isChasing");
-
             }
         }
         SwitchState();
