@@ -9,12 +9,8 @@ public class Collectible : MonoBehaviour
     public Color[] newColors;
     private int colorIndex = 0;
     public Color startColor;
-    public Player collect;
-
-    private void Awake()
-    {
-        collect = GetComponent<Player>();
-    }
+    bool interact;
+    
 
     void OnTriggerEnter(Collider other)
     {
@@ -22,9 +18,8 @@ public class Collectible : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             myRenderer.material.color = newColors[colorIndex];
-            Collected();
             Debug.Log("Player collision");
-            collect.RayCasting();
+            
             
         }
 
@@ -40,14 +35,11 @@ public class Collectible : MonoBehaviour
         Debug.Log("Idle Animation Complete");
     }
 
-    public void Collected()
-    {
-        Debug.Log("Collected");
-    }
 
     public void DestroyCollectible()
     {
         Destroy(gameObject);
     }
+
 
 }

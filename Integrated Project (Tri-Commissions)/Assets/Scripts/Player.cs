@@ -70,6 +70,10 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public StaminaController _staminaController;
 
+    private Collectible collect;
+
+    public GameObject cheese;
+
     [SerializeField]
     Karen genericKaren;
 
@@ -79,6 +83,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
         isGrounded = true;
+        collect = GetComponent<Collectible>();
     }
 
     public void SetRunSpeed(float speed)
@@ -147,7 +152,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log(hitInfo.transform.name);
 
-                if (hitInfo.transform.tag == "Collectible")
+                if (hitInfo.transform.tag == "Elevator")
                 {
                     if(interact)
                     {
@@ -220,6 +225,10 @@ public class Player : MonoBehaviour
     public void OnInteract()
     {
         interact = true;
+        if (interact)
+        {
+            cheese.SetActive(false);
+        }
     }
 
 
