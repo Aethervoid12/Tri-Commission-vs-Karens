@@ -18,13 +18,13 @@ public class Karen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(thingToChase != null)
+        if (thingToChase != null)
         {
             agentComponent.SetDestination(thingToChase.position);
         }
