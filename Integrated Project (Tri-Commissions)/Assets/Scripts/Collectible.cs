@@ -16,7 +16,8 @@ public class Collectible : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             myRenderer.material.color = newColors[colorIndex];
-
+            Collected();
+            Debug.Log("Player collision");
         }
 
     }
@@ -24,6 +25,21 @@ public class Collectible : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         myRenderer.material.color = startColor;
+    }
+
+    void IdleComplete()
+    {
+        Debug.Log("Idle Animation Complete");
+    }
+
+    public void Collected()
+    {
+        Debug.Log("Collected");
+    }
+
+    void DestroyCollectible()
+    {
+        Destroy(gameObject);
     }
 
 }
