@@ -239,10 +239,30 @@ public class Player : MonoBehaviour
             }
                 
         }
+        if (soda.gameObject.tag == "SodaCollectible")
+        {
+            if (interact)
+            {
+                soda.SetActive(false);
+            }
+
+        }
+        if (apple.gameObject.tag == "AppleCollectible")
+        {
+            if (interact)
+            {
+                apple.SetActive(false);
+            }
+        }
+        if (egg.gameObject.tag == "EggCollectible")
+        {
+            if (interact)
+            {
+                egg.SetActive(false);
+            }
+        }
+
     }
-
-
-
 
 }
 public static class Helpers
