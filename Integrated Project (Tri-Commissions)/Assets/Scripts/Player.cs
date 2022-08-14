@@ -128,10 +128,19 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.forward, out hitInfo, interactionDistance))
             {
                 Debug.Log(hitInfo.transform.name);
+
+                if (hitInfo.transform.tag == "Collectible")
+                {
+                    if (interact)
+                    {
+                        hitInfo.transform.GetComponent<Collectible>().Collected();
+                        Debug.Log("Interacted");
+                    }
+                }
             }
+            interact = false;
         }
 
-        interact = false;
 
         var vel = GetComponent<Rigidbody>().velocity.magnitude;
 
