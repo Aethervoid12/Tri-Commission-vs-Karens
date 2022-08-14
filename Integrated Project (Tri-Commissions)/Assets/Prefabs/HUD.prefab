@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 1606142002594197053}
   - component: {fileID: 2752003663614280903}
   m_Layer: 5
-  m_Name: Yoghurt
+  m_Name: Apples
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Yoghurt'
+  m_text: '- Apples'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5eb9ab68f3b78d4db92ab67e4dcd6cc, type: 2}
   m_sharedMaterial: {fileID: 7006548044951044667, guid: d5eb9ab68f3b78d4db92ab67e4dcd6cc,
