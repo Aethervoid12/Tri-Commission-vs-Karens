@@ -74,6 +74,12 @@ public class Player : MonoBehaviour
 
     public GameObject cheese;
 
+    public GameObject soda;
+
+    public GameObject apple;
+
+    public GameObject egg;
+
     [SerializeField]
     Karen genericKaren;
 
@@ -225,11 +231,17 @@ public class Player : MonoBehaviour
     public void OnInteract()
     {
         interact = true;
-        if (interact)
+        if (cheese.gameObject.tag == "CheeseCollectible")
         {
-            cheese.SetActive(false);
+            if (interact)
+            {
+                cheese.SetActive(false);
+            }
+                
         }
     }
+
+
 
 
 }
