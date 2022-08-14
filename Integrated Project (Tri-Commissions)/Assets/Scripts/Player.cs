@@ -70,6 +70,9 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public StaminaController _staminaController;
 
+    [SerializeField]
+    Karen genericKaren;
+
     void Start()
     {
         _staminaController = GetComponent<StaminaController>();
@@ -126,7 +129,10 @@ public class Player : MonoBehaviour
             Look();
         }
         
-
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            genericKaren.SetThingToChase(transform);
+        }
 
         var vel = GetComponent<Rigidbody>().velocity.magnitude;
 
