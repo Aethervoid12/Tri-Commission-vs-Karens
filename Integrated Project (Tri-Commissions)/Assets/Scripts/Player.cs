@@ -112,11 +112,6 @@ public class Player : MonoBehaviour
         rb.velocity = moveSpeed * transform.forward;
     }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     void OnCollisionStay()
     {
         isGrounded = true;

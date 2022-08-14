@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 6769867858234603272}
   - component: {fileID: 1443991322714658038}
   - component: {fileID: 458399301504777637}
+  - component: {fileID: 3292967636141214479}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,13 +217,18 @@ MonoBehaviour:
   playerCamera: {fileID: 9101180708224952684, guid: ae9a9fd5d5daf504388a71ee2e3ef000,
     type: 3}
   pauseScreen: {fileID: 0}
-  cheese: {fileID: 0}
+  itemCollect: {fileID: 0}
   jump: {x: 0, y: 0, z: 0}
   jumpForce: 7
   isWalking: 0
   y: 0
   playerTransform: {fileID: 0}
   _staminaController: {fileID: 0}
+  cheese: {fileID: 0}
+  soda: {fileID: 0}
+  apple: {fileID: 0}
+  egg: {fileID: 0}
+  genericKaren: {fileID: 0}
 --- !u!114 &458399301504777637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,3 +254,16 @@ MonoBehaviour:
     type: 3}
   sliderCanvasGroup: {fileID: 903320741106137079, guid: 8488549bebb36c34c8657ded6ac877f4,
     type: 3}
+--- !u!114 &3292967636141214479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134903649766940291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce660e959aacf04287d1319bbb661d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 9134903649766940291}
