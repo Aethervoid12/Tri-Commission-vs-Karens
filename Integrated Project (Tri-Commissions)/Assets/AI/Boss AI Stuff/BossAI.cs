@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossAI : MonoBehaviour
 {
@@ -9,13 +10,13 @@ public class BossAI : MonoBehaviour
 
     public float idleTime;
 
-    public float attackDistance = 1f;
-
     private UnityEngine.AI.NavMeshAgent agent;
 
     public Transform[] checkpoints;
 
     private int currentCheckpointIndex; 
+
+    private float attackDistance = 1f;
 
     private Transform playerToChase;
 
@@ -39,19 +40,31 @@ public class BossAI : MonoBehaviour
     void SwitchState()
     {
         StartCoroutine(currentState);
-
     }
-    public void BossSeePlayer(Transform player)
+
+    public void SeePlayer(Transform player)
     {
         playerToChase = player;
-        nextState = "Chase";
+        
+        if(agent.remainingDistance <= agent.stoppingDistance)
+        {
+            nextState = "Attack";
+        }
+        else
+        {
+            nextState = "Chase";
+        }
     }
 
     IEnumerator Idle()
     {
-        GetComponent<Animator>().SetTrigger("isIdle");
+        
         while(currentState == "Idle")
         {
+            GetComponent<Animator>().SetBool("isChasing",false);
+            GetComponent<Animator>().SetBool("isIdle",true);
+            GetComponent<Animator>().SetBool("isPatrolling",false);
+            GetComponent<Animator>().SetBool("isAttacking",false);
             yield return new WaitForSeconds(idleTime);
 
             nextState = "Patrol";
@@ -61,12 +74,16 @@ public class BossAI : MonoBehaviour
     }
     IEnumerator Patrol()
     {
-        GetComponent<Animator>().SetTrigger("isPatrolling");
+        
         agent.SetDestination(checkpoints[currentCheckpointIndex].position);
         bool hasReached = false;
 
         while(currentState == "Patrol")
         {
+            GetComponent<Animator>().SetBool("isChasing",false);
+            GetComponent<Animator>().SetBool("isIdle",false);
+            GetComponent<Animator>().SetBool("isPatrolling",true);
+            GetComponent<Animator>().SetBool("isAttacking",false);
             yield return null;
             if(!hasReached)
             {
@@ -75,7 +92,6 @@ public class BossAI : MonoBehaviour
                     hasReached = true;
 
                     nextState = "Idle";
-
                     ++currentCheckpointIndex;
 
                     if (currentCheckpointIndex >= checkpoints.Length)
@@ -89,9 +105,13 @@ public class BossAI : MonoBehaviour
     }
     IEnumerator Chase()
     {
-        GetComponent<Animator>().SetTrigger("isChasing");
+       
         while(currentState == "Chase")
         {
+            GetComponent<Animator>().SetBool("isChasing",true);
+            GetComponent<Animator>().SetBool("isIdle",false);
+            GetComponent<Animator>().SetBool("isPatrolling",false);
+            GetComponent<Animator>().SetBool("isAttacking",false);
             yield return null;
             if(playerToChase != null)
             {
@@ -104,24 +124,28 @@ public class BossAI : MonoBehaviour
             else
             {
                 nextState = "Idle";
-
             }
         }
         SwitchState();
     }
-
     IEnumerator Attack()
     {
-        GetComponent<Animator>().SetTrigger("isAttacking");
+       
         while(currentState == "Attack")
         {
+            GetComponent<Animator>().SetBool("isChasing",false);
+            GetComponent<Animator>().SetBool("isIdle",false);
+            GetComponent<Animator>().SetBool("isPatrolling",false);
+            GetComponent<Animator>().SetBool("isAttacking",true);
             yield return null;
             
-            if(agent.remainingDistance <= attackDistance)
+            if(agent.remainingDistance >= attackDistance);
             {
-                nextState = "Chase";
+                nextState = "Idle";
             }
+
         }
         SwitchState();
     }
+
 }
