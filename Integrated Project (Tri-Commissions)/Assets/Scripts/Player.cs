@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
 
     bool interact = false;
 
+    bool press = false;
+
     Vector3 headRotationInput;
 
     public GameObject playerCamera;
@@ -138,6 +140,7 @@ public class Player : MonoBehaviour
         {
             GatherInput();
             Look();
+            RayCasting();
         }
         
         if (Input.GetKeyDown(KeyCode.Y))
@@ -160,15 +163,14 @@ public class Player : MonoBehaviour
 
                 if (hitInfo.transform.tag == "Elevator")
                 {
-                    if(interact)
+                    if(press)
                     {
-                        hitInfo.transform.GetComponent<Collectible>().DestroyCollectible();
-                        Debug.Log("Collectible destroyed");
+                        hitInfo.transform.GetComponent<SceneControl>().Interact();
                     }
 
                 }
             }
-            interact = false;
+            press = false;
         }
     }
 
@@ -210,7 +212,7 @@ public class Player : MonoBehaviour
 
     void OnFire()
     {
-        interact = true;
+        press = true;
     }
 
     void OnJump()
@@ -228,9 +230,12 @@ public class Player : MonoBehaviour
         Debug.Log("Player is sprinting");
     }
 
+
     public void OnInteract()
     {
+        
         interact = true;
+
         if (cheese.gameObject.tag == "CheeseCollectible")
         {
             if (interact)
