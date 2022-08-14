@@ -120,14 +120,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) == false)
+        if (!Input.anyKey)
         {
+            gameObject.GetComponent<Animator>().Play("IDLE");
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) == false)
+        {
+            gameObject.GetComponent<Animator>().Play("WALK");
             moveSpeed = 5;
             _staminaController.weAreSprinting = false;
 
         }
         else
         {
+            gameObject.GetComponent<Animator>().Play("RUN");
             Debug.Log("You are sprinting");
         }
 
@@ -175,7 +181,7 @@ public class Player : MonoBehaviour
     {
         if (!isDead)
         {
-            Move();
+             Move();
         }
     }
 
