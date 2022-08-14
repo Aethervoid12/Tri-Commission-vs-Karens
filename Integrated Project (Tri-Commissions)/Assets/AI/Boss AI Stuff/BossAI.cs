@@ -45,7 +45,15 @@ public class BossAI : MonoBehaviour
     public void SeePlayer(Transform player)
     {
         playerToChase = player;
-        nextState = "Chase";
+        
+        if(agent.remainingDistance <= agent.stoppingDistance)
+        {
+            nextState = "Attack";
+        }
+        else
+        {
+            nextState = "Chase";
+        }
     }
 
     IEnumerator Idle()
