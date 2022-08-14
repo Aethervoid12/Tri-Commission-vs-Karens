@@ -242,6 +242,7 @@ public class Player : MonoBehaviour
             if (interact)
             {
                 cheese.SetActive(false);
+                GameManager.instance.CheeseCollected();
             }
                 
         }
@@ -250,6 +251,7 @@ public class Player : MonoBehaviour
             if (interact)
             {
                 soda.SetActive(false);
+                GameManager.instance.SodaCollected();
             }
 
         }
@@ -258,6 +260,7 @@ public class Player : MonoBehaviour
             if (interact)
             {
                 apple.SetActive(false);
+                GameManager.instance.AppleCollected();
             }
         }
         if (egg.gameObject.tag == "EggCollectible")
@@ -265,6 +268,7 @@ public class Player : MonoBehaviour
             if (interact)
             {
                 egg.SetActive(false);
+                GameManager.instance.EggCollected();
             }
         }
 
