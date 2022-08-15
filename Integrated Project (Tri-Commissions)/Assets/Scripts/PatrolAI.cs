@@ -104,9 +104,10 @@ public class PatrolAI : MonoBehaviour
             yield return null;
             animator.SetBool("isWalking", true);
             animator.SetBool("isRunning", false);
+            Debug.Log("Walking");
             //Debug.Log(currentAnim);
-            
-            
+
+
             if (!hasReached)
             {
                 if(agent.remainingDistance <= agent.stoppingDistance)
