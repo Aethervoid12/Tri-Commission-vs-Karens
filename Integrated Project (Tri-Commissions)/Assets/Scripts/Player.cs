@@ -86,6 +86,14 @@ public class Player : MonoBehaviour
 
     public GameManager GM;
 
+    private bool appleCollection = false;
+
+    private bool eggCollection = false;
+
+    private bool milkCollection = false;
+
+    private bool cheeseCollection = false;
+
     // The maximum health
     public int maxHealth = 100;
 
@@ -185,22 +193,33 @@ public class Player : MonoBehaviour
 
                 if (hitInfo.transform.tag == "Elevator")
                 {
-                    Debug.Log("Elevator");
                     if(press)
                     {
-                        hitInfo.transform.GetComponent<SceneControl>().Interact();
+                        if(appleCollection && eggCollection && cheeseCollection)
+                        {
+                            hitInfo.transform.GetComponent<SceneControl>().Interact();
+                        }
+                        else
+                        {
+                        Debug.Log("failure");
+                        }
                     }
 
                 }
                 if (hitInfo.transform.tag == "Elevator2")
                 {
-                    Debug.Log("Elevator2");
-                    if(press)
+                if (press)
+                {
+                    if (milkCollection)
                     {
                         hitInfo.transform.GetComponent<SceneControl>().Interact();
                     }
-
+                    else
+                    {
+                        Debug.Log("failure");
+                    }
                 }
+            }
             }
             press = false;
 
@@ -272,6 +291,7 @@ public class Player : MonoBehaviour
                 cheese.SetActive(false);
                 GM.CheeseCollected();
                 collectUI.SetActive(false);
+                cheeseCollection = true;
             }
         }
         if (other.gameObject.tag == "AppleCollectible")
@@ -281,6 +301,7 @@ public class Player : MonoBehaviour
                 apple.SetActive(false);
                 GM.AppleCollected();
                 collectUI.SetActive(false);
+                appleCollection = true;
             }
         }
         if (other.gameObject.tag == "EggCollectible")
@@ -290,6 +311,7 @@ public class Player : MonoBehaviour
                 egg.SetActive(false);
                 GM.EggCollected();
                 collectUI.SetActive(false);
+                eggCollection = true;
             }
         }
         if (other.gameObject.tag == "MilkCollectible")
@@ -298,6 +320,7 @@ public class Player : MonoBehaviour
                 milk.SetActive(false);
                 GM.MilkCollected();
                 collectUI.SetActive(false);
+                milkCollection = true;
                 //radelle add any extra stuff that happens when milk is collected over here
             }
     }
