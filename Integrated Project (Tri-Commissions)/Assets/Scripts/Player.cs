@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
                     gameObject.GetComponent<Animator>().Play("RUN");
                 }
             }
-            
+
             GatherInput();
             Look();
             RayCasting();
@@ -311,10 +311,9 @@ public class Player : MonoBehaviour
     //If player Collided with object tagged Death, will receive damage
     void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.tag == "Death")
         {
-            Debug.Log("Colliding with Enemy");
+            
             TakeDamage(20);
         }
     }
