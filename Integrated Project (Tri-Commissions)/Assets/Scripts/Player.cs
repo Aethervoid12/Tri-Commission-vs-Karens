@@ -345,9 +345,13 @@ public class Player : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Death")
-        {
-            
+        {          
             TakeDamage(20);
+        }
+
+        if(collision.gameObject.tag == "Karen")
+        {
+            TakeDamage(10);
         }
     }
 

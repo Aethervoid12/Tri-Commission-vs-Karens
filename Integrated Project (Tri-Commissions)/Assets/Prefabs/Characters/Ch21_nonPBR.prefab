@@ -2943,9 +2943,10 @@ GameObject:
   - component: {fileID: 49942944241719679}
   - component: {fileID: 1295908371258804557}
   - component: {fileID: 240416664098445437}
+  - component: {fileID: 4846271412695170230}
   m_Layer: 0
   m_Name: Ch21_nonPBR
-  m_TagString: Untagged
+  m_TagString: Karen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3054,3 +3055,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &4846271412695170230
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129283739586875374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.35157615
+  m_Height: 1.8750656
+  m_Direction: 1
+  m_Center: {x: 0.00074575626, y: 0.9995616, z: -0.0005212548}
