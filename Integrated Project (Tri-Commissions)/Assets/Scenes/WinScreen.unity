@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 277679976}
   - component: {fileID: 277679975}
   - component: {fileID: 277679974}
+  - component: {fileID: 277679977}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -321,7 +322,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 277679975}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 277679977}
+        m_TargetAssemblyTypeName: Exit, Assembly-CSharp
+        m_MethodName: exitgame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &277679975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +373,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277679972}
   m_CullTransparentMesh: 1
+--- !u!114 &277679977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277679972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eaf320cb82aec14ab1a05e06e048220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &403357766
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b775d961c8b46d74e8dffe2aa11eac8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetSceneIndex: 0
 --- !u!114 &1600692387
 MonoBehaviour:
   m_ObjectHideFlags: 0
