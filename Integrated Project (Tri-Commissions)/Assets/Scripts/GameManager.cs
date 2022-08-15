@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     public bool milkCollected = false;
 
+    private bool secondFloor = false;
+
     void Start()
     {
         itemsCollected = 0;
@@ -42,15 +44,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (cheeseCollected == true)
+        if (!secondFloor)
         {
-            if (eggCollected == true)
+            if (cheeseCollected && appleCollected && eggCollected)
             {
-                if (appleCollected == true)
-                {
-                    listUI.SetActive(false);
-                    promptUI.SetActive(true);
-                }
+                listUI.SetActive(false);
+                promptUI.SetActive(true);
+                secondFloor = true;
             }
         }
     }
