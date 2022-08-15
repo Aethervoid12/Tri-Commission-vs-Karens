@@ -44,6 +44,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 9101180708224952686, guid: ae9a9fd5d5daf504388a71ee2e3ef000,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9101180708224952687, guid: ae9a9fd5d5daf504388a71ee2e3ef000,
         type: 3}
       propertyPath: m_RootOrder
