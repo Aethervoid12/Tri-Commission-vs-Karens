@@ -15,8 +15,8 @@ public class LoadingScreen : MonoBehaviour
     IEnumerator FauxLoadingPause()
     {
 
-        //yield on a new YieldInstruction that waits for 3 seconds.
-        yield return new WaitForSeconds(2);
+        //yield on a new YieldInstruction that waits for 1 second.
+        yield return new WaitForSeconds(1);
         //load next scene
         SceneManager.LoadScene(sceneName);
 
