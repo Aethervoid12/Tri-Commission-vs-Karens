@@ -82,10 +82,15 @@ public class Player : MonoBehaviour
 
     public GameObject egg;
 
+<<<<<<< Updated upstream
     public GameManager GM;
 
     [SerializeField]
     Karen genericKaren;
+=======
+    //[SerializeField]
+    //Karen genericKaren;
+>>>>>>> Stashed changes
 
     void Start()
     {
@@ -155,10 +160,10 @@ public class Player : MonoBehaviour
             DeathPrompt();
         }
         
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            genericKaren.SetThingToChase(transform);
-        }
+        //if (Input.GetKeyDown(KeyCode.Y))
+        //{
+        //    genericKaren.SetThingToChase(transform);
+        //}
 
         var vel = GetComponent<Rigidbody>().velocity.magnitude;
 
