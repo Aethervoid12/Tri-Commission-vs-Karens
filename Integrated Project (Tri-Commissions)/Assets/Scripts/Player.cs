@@ -86,6 +86,8 @@ public class Player : MonoBehaviour
 
     public GameManager GM;
 
+    public GameObject dialogueUI;
+
     private bool appleCollection = false;
 
     private bool eggCollection = false;
@@ -208,18 +210,18 @@ public class Player : MonoBehaviour
                 }
                 if (hitInfo.transform.tag == "Elevator2")
                 {
-                if (press)
-                {
-                    if (milkCollection)
+                    if (press)
                     {
-                        hitInfo.transform.GetComponent<SceneControl>().Interact();
-                    }
-                    else
-                    {
-                        Debug.Log("failure");
+                        if (milkCollection)
+                        {
+                            hitInfo.transform.GetComponent<SceneControl>().Interact();
+                        }
+                        else
+                        {
+                            Debug.Log("failure");
+                        }
                     }
                 }
-            }
             }
             press = false;
 
@@ -315,14 +317,22 @@ public class Player : MonoBehaviour
             }
         }
         if (other.gameObject.tag == "MilkCollectible")
+        {
             if (Input.GetKey(KeyCode.E) == true)
             {
                 milk.SetActive(false);
                 GM.MilkCollected();
                 collectUI.SetActive(false);
                 milkCollection = true;
-                //radelle add any extra stuff that happens when milk is collected over here
             }
+        }
+        if (other.gameObject.tag == "NPC")
+        {
+            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Mouse0))
+            {
+                loadDialogue();
+            }
+        }
     }
 
     void DeathPrompt()
@@ -354,6 +364,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void loadDialogue()
+    {
+        dialogueUI.SetActive(true);
+    }
+    public void endDialogue()
+    {
+        dialogueUI.SetActive(false);
+    }
 }
 public static class Helpers
 {
