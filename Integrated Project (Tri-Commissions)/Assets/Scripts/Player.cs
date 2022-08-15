@@ -82,15 +82,10 @@ public class Player : MonoBehaviour
 
     public GameObject egg;
 
-<<<<<<< Updated upstream
     public GameManager GM;
 
-    [SerializeField]
-    Karen genericKaren;
-=======
     //[SerializeField]
     //Karen genericKaren;
->>>>>>> Stashed changes
 
     void Start()
     {
