@@ -16,7 +16,7 @@ public class PatrolAI : MonoBehaviour
 
     private int currentCheckpointIndex;
 
-    private Transform playerToChase;
+    public Transform playerToChase;
 
     [Header("AnimationSettings")]
     [SerializeField] private Animator animator;
@@ -83,9 +83,12 @@ public class PatrolAI : MonoBehaviour
     {
         animator.SetBool("isWalking", false);
         animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking" , false);
 
         while (currentState == "Idle")
         {
+            Debug.Log("Idle");
+
             yield return new WaitForSeconds(idleTime);
             
             nextState = "Patrol";
@@ -100,6 +103,7 @@ public class PatrolAI : MonoBehaviour
         bool hasReached = false;
         animator.SetBool("isWalking", true);
         animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", false);
 
         while (currentState == "Patrol")
         {
@@ -124,6 +128,7 @@ public class PatrolAI : MonoBehaviour
                         currentCheckpointIndex = 0;
                     }
                     animator.SetBool("isWalking" , false);
+                    animator.SetBool("isAttacking", false);
                 }
             }
         }
@@ -135,21 +140,57 @@ public class PatrolAI : MonoBehaviour
     {
         animator.SetBool("isWalking", false);
         animator.SetBool("isRunning", true);
+        animator.SetBool("isAttacking", false);
 
         while (currentState == "Chase")
         {
             yield return null;
-            
+
             //Debug.Log(currentAnim);
+
 
             if (playerToChase != null)
             {
+                float dist = Vector3.Distance(agent.transform.position, playerToChase.position);
                 agent.SetDestination(playerToChase.position);
+
+                if (dist < 10.0f)
+                {
+                    nextState = "Attack";
+                }
             }
             else
             {
                 nextState = "Idle";
                 animator.SetBool("isWalking", false);
+                animator.SetBool("isAttacking", false);
+            }
+        }
+        SwitchState();
+    }
+
+    IEnumerator Attack()
+    {
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", true);
+
+        while (currentState == "Attack")
+        {
+            yield return null;
+
+            Debug.Log(currentState);
+
+            if (playerToChase != null)
+            {
+                float dist = Vector3.Distance(agent.transform.position, playerToChase.position);
+
+                if (dist > 10.0f)
+                {
+                    animator.SetBool("isWalking", false);
+                    animator.SetBool("isRunning", false);
+                    nextState = "Idle";
+                }
             }
         }
         SwitchState();
