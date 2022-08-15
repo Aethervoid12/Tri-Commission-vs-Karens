@@ -48,8 +48,10 @@ public class PatrolAI : MonoBehaviour
         }
         else if (currentAnim == CurrentAnim.Walking)
         {
+            Debug.Log("Start walking");
             animator.SetBool("isWalking", true);
             animator.SetBool("isRunning", false);
+            Debug.Log("Animator walking");
         }
         else if (currentAnim == CurrentAnim.Running)
         {
@@ -86,8 +88,8 @@ public class PatrolAI : MonoBehaviour
     {
         while (currentState == "Idle")
         {
-            yield return new WaitForSeconds(idleTime);
             currentAnim = CurrentAnim.Idle;
+            yield return new WaitForSeconds(idleTime);
 
             nextState = "Patrol";
         }
@@ -102,8 +104,10 @@ public class PatrolAI : MonoBehaviour
 
         while(currentState == "Patrol")
         {
-            yield return null;
             currentAnim = CurrentAnim.Walking;
+            Debug.Log(currentAnim);
+            yield return null;
+            
             if (!hasReached)
             {
                 if(agent.remainingDistance <= agent.stoppingDistance)
@@ -129,8 +133,11 @@ public class PatrolAI : MonoBehaviour
     {
         while(currentState == "Chase")
         {
-            yield return null;
             currentAnim = CurrentAnim.Running;
+            Debug.Log(currentAnim);
+
+            yield return null;
+            
             if (playerToChase != null)
             {
                 agent.SetDestination(playerToChase.position);
