@@ -11,6 +11,7 @@ TagManager:
   - SodaCollectible
   - EggCollectible
   - AppleCollectible
+  - Death
   layers:
   - Default
   - TransparentFX

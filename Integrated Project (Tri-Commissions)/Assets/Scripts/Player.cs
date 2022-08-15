@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     public GameObject playerCamera;
 
-    public GameObject pauseScreen;
+    public GameObject deathScreen;
 
     public GameObject itemCollect;
 
@@ -120,28 +120,36 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Input.anyKey)
-        {
-            gameObject.GetComponent<Animator>().Play("IDLE");
-        }
-        else if (Input.GetKey(KeyCode.LeftShift) == false)
-        {
-            gameObject.GetComponent<Animator>().Play("WALK");
-            moveSpeed = 5;
-            _staminaController.weAreSprinting = false;
-
-        }
-        else
-        {
-            gameObject.GetComponent<Animator>().Play("RUN");
-            Debug.Log("You are sprinting");
-        }
-
         if (!isDead)
         {
+            if (!Input.anyKey)
+            {
+                gameObject.GetComponent<Animator>().Play("IDLE");
+            }
+            else if (Input.GetKey(KeyCode.Mouse0))
+            {
+                gameObject.GetComponent<Animator>().Play("IDLE");
+            }
+            else if (Input.GetKey(KeyCode.LeftShift) == false)
+            {
+                gameObject.GetComponent<Animator>().Play("WALK");
+                moveSpeed = 5;
+                _staminaController.weAreSprinting = false;
+
+            }
+            else
+            {
+                gameObject.GetComponent<Animator>().Play("RUN");
+                Debug.Log("You are sprinting");
+            }
             GatherInput();
             Look();
             RayCasting();
+        }
+
+        if(isDead)
+        {
+            DeathPrompt();
         }
         
         if (Input.GetKeyDown(KeyCode.Y))
@@ -231,7 +239,11 @@ public class Player : MonoBehaviour
         Debug.Log("Player is sprinting");
     }
 
-
+    void DeathPrompt()
+    {
+        deathScreen.SetActive(true);
+        Destroy(gameObject);
+    }
     public void OnInteract()
     {
         
@@ -272,6 +284,13 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Death")
+        {
+            isDead = true;
+        }
     }
 
 }
