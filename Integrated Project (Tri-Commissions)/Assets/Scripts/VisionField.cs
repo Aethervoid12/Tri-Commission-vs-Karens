@@ -22,4 +22,12 @@ public class VisionField : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            attachedAI.SeePlayer(other.transform);
+        }
+    }
+
 }
