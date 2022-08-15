@@ -137,8 +137,9 @@ public class Player : MonoBehaviour
                 if (Input.GetKey(KeyCode.LeftShift) == false)
                 {
                     gameObject.GetComponent<Animator>().Play("WALK");
+                    _staminaController.weAreSprinting = false;
                 }
-                else
+                else if (Input.GetKey(KeyCode.LeftShift) == true)
                 {
                     gameObject.GetComponent<Animator>().Play("RUN");
                 }
@@ -170,7 +171,6 @@ public class Player : MonoBehaviour
             RaycastHit hitInfo;
             if (Physics.Raycast(transform.position, transform.forward, out hitInfo, interactionDistance))
             {
-                Debug.Log(hitInfo.transform.name);
 
                 if (hitInfo.transform.tag == "Elevator")
                 {
@@ -241,14 +241,9 @@ public class Player : MonoBehaviour
         Debug.Log("Player is sprinting");
     }
 
-    void DeathPrompt()
-    {
-        deathScreen.SetActive(true);
-        Destroy(gameObject);
-    }
     public void OnInteract()
     {
-        
+
         interact = true;
 
         if (cheese.gameObject.tag == "CheeseCollectible")
@@ -258,7 +253,7 @@ public class Player : MonoBehaviour
                 cheese.SetActive(false);
                 GM.CheeseCollected();
             }
-                
+
         }
         if (soda.gameObject.tag == "SodaCollectible")
         {
@@ -287,6 +282,13 @@ public class Player : MonoBehaviour
         }
 
     }
+    void DeathPrompt()
+    {
+        deathScreen.SetActive(true);
+        Destroy(gameObject);
+    }
+    
+    
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Death")
