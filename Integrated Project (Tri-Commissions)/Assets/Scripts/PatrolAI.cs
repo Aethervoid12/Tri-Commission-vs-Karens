@@ -20,7 +20,7 @@ public class PatrolAI : MonoBehaviour
 
     [Header("AnimationSettings")]
     [SerializeField] private Animator animator;
-    [SerializeField] private CurrentAnim currentAnim;
+    //[SerializeField] private CurrentAnim currentAnim;
 
     private void Start()
     {
@@ -39,33 +39,28 @@ public class PatrolAI : MonoBehaviour
         }
     }
 
-    private void AnimationChecker()
-    {
-        if (currentAnim == CurrentAnim.Idle)
-        {
-            animator.SetBool("isWalking" , false);
-            animator.SetBool("isRunning" , false);
-        }
-        else if (currentAnim == CurrentAnim.Walking)
-        {
-            Debug.Log("Start walking");
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isRunning", false);
-            Debug.Log("Animator walking");
-        }
-        else if (currentAnim == CurrentAnim.Running)
-        {
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", true);
-        }
-    }
+    //private void AnimationChecker()
+    //{
+    //    if (currentAnim == CurrentAnim.Idle)
+    //    {
 
-    enum CurrentAnim
-    {
-        Idle,
-        Walking,
-        Running
-    }
+    //    }
+    //    else if (currentAnim == CurrentAnim.Walking)
+    //    {
+
+    //    }
+    //    else if (currentAnim == CurrentAnim.Running)
+    //    {
+
+    //    }
+    //}
+
+    //enum CurrentAnim
+    //{
+    //    Idle,
+    //    Walking,
+    //    Running
+    //}
 
     void SwitchState()
     {
@@ -88,8 +83,10 @@ public class PatrolAI : MonoBehaviour
     {
         while (currentState == "Idle")
         {
-            currentAnim = CurrentAnim.Idle;
             yield return new WaitForSeconds(idleTime);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+            
 
             nextState = "Patrol";
         }
@@ -104,9 +101,11 @@ public class PatrolAI : MonoBehaviour
 
         while(currentState == "Patrol")
         {
-            currentAnim = CurrentAnim.Walking;
-            Debug.Log(currentAnim);
             yield return null;
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isRunning", false);
+            //Debug.Log(currentAnim);
+            
             
             if (!hasReached)
             {
@@ -133,10 +132,12 @@ public class PatrolAI : MonoBehaviour
     {
         while(currentState == "Chase")
         {
-            currentAnim = CurrentAnim.Running;
-            Debug.Log(currentAnim);
-
             yield return null;
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", true);
+            //Debug.Log(currentAnim);
+
+            
             
             if (playerToChase != null)
             {
