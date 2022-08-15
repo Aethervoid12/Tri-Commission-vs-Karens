@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     /// </summary>
     bool isDead = false;
 
-    float interactionDistance = 3f;
+    float interactionDistance = 4f;
 
     bool interact = false;
 
@@ -166,14 +166,13 @@ public class Player : MonoBehaviour
 
     public void RayCasting()
     {
-        if (!isDead)
-        {
             RaycastHit hitInfo;
             if (Physics.Raycast(transform.position, transform.forward, out hitInfo, interactionDistance))
             {
 
                 if (hitInfo.transform.tag == "Elevator")
                 {
+                    Debug.Log("Elevator");
                     if(press)
                     {
                         hitInfo.transform.GetComponent<SceneControl>().Interact();
@@ -182,7 +181,7 @@ public class Player : MonoBehaviour
                 }
             }
             press = false;
-        }
+
     }
 
 
