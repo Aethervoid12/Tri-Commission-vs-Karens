@@ -82,6 +82,8 @@ public class Player : MonoBehaviour
 
     public GameObject egg;
 
+    public GameManager GM;
+
     [SerializeField]
     Karen genericKaren;
 
@@ -92,6 +94,10 @@ public class Player : MonoBehaviour
         jump = new Vector3(0.0f, 2.0f, 0.0f);
         isGrounded = true;
         collect = GetComponent<Collectible>();
+        if (GM == null)
+        {
+            GM = FindObjectOfType<GameManager>();
+        }
     }
 
     public void SetRunSpeed(float speed)
@@ -126,22 +132,18 @@ public class Player : MonoBehaviour
             {
                 gameObject.GetComponent<Animator>().Play("IDLE");
             }
-            else if (Input.GetKey(KeyCode.Mouse0))
+            else if (Input.GetKey(KeyCode.W) == true||Input.GetKey(KeyCode.A) == true||Input.GetKey(KeyCode.S) == true||Input.GetKey(KeyCode.D) == true)
             {
-                gameObject.GetComponent<Animator>().Play("IDLE");
+                if (Input.GetKey(KeyCode.LeftShift) == false)
+                {
+                    gameObject.GetComponent<Animator>().Play("WALK");
+                }
+                else
+                {
+                    gameObject.GetComponent<Animator>().Play("RUN");
+                }
             }
-            else if (Input.GetKey(KeyCode.LeftShift) == false)
-            {
-                gameObject.GetComponent<Animator>().Play("WALK");
-                moveSpeed = 5;
-                _staminaController.weAreSprinting = false;
-
-            }
-            else
-            {
-                gameObject.GetComponent<Animator>().Play("RUN");
-                Debug.Log("You are sprinting");
-            }
+            
             GatherInput();
             Look();
             RayCasting();
@@ -254,7 +256,7 @@ public class Player : MonoBehaviour
             if (interact)
             {
                 cheese.SetActive(false);
-                GameManager.instance.CheeseCollected();
+                GM.CheeseCollected();
             }
                 
         }
@@ -263,7 +265,7 @@ public class Player : MonoBehaviour
             if (interact)
             {
                 soda.SetActive(false);
-                GameManager.instance.SodaCollected();
+                GM.SodaCollected();
             }
 
         }
@@ -272,7 +274,7 @@ public class Player : MonoBehaviour
             if (interact)
             {
                 apple.SetActive(false);
-                GameManager.instance.AppleCollected();
+                GM.AppleCollected();
             }
         }
         if (egg.gameObject.tag == "EggCollectible")
@@ -280,7 +282,7 @@ public class Player : MonoBehaviour
             if (interact)
             {
                 egg.SetActive(false);
-                GameManager.instance.EggCollected();
+                GM.EggCollected();
             }
         }
 
