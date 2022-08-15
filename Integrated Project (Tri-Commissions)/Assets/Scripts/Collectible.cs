@@ -8,7 +8,7 @@ public class Collectible : MonoBehaviour
     public MeshRenderer myRenderer;
     public Color[] newColors;
     private int colorIndex = 0;
-    private Color startColor;
+    public Color startColor;
     bool interact;
     public GameObject collectUI;
 

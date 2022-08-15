@@ -12,6 +12,8 @@ TagManager:
   - EggCollectible
   - AppleCollectible
   - Death
+  - Elevator2
+  - MilkCollectible
   layers:
   - Default
   - TransparentFX

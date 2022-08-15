@@ -181,6 +181,15 @@ public class Player : MonoBehaviour
                     }
 
                 }
+                if (hitInfo.transform.tag == "Elevator2")
+                {
+                    Debug.Log("Elevator2");
+                    if(press)
+                    {
+                        hitInfo.transform.GetComponent<SceneControl>().Interact();
+                    }
+
+                }
             }
             press = false;
 
