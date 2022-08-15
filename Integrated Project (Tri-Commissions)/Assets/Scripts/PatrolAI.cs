@@ -18,12 +18,17 @@ public class PatrolAI : MonoBehaviour
 
     private Transform playerToChase;
 
+    [Header("AnimationSettings")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private CurrentAnim currentAnim;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         currentState = "Idle";
         nextState = currentState;
         SwitchState();
+        //StartCoroutine(TestSwitch());
     }
 
     private void Update()
@@ -32,6 +37,32 @@ public class PatrolAI : MonoBehaviour
         {
             currentState = nextState;
         }
+    }
+
+    private void AnimationChecker()
+    {
+        if (currentAnim == CurrentAnim.Idle)
+        {
+            animator.SetBool("isWalking" , false);
+            animator.SetBool("isRunning" , false);
+        }
+        else if (currentAnim == CurrentAnim.Walking)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isRunning", false);
+        }
+        else if (currentAnim == CurrentAnim.Running)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", true);
+        }
+    }
+
+    enum CurrentAnim
+    {
+        Idle,
+        Walking,
+        Running
     }
 
     void SwitchState()
@@ -45,11 +76,18 @@ public class PatrolAI : MonoBehaviour
         nextState = "Chase";
     }
 
+    //IEnumerator TestSwitch()
+    //{
+    //    yield return new WaitForSeconds(2);
+    //    currentAnim = CurrentAnim.Running;
+    //}
+
     IEnumerator Idle()
     {
         while (currentState == "Idle")
         {
             yield return new WaitForSeconds(idleTime);
+            currentAnim = CurrentAnim.Idle;
 
             nextState = "Patrol";
         }
@@ -65,7 +103,8 @@ public class PatrolAI : MonoBehaviour
         while(currentState == "Patrol")
         {
             yield return null;
-            if(!hasReached)
+            currentAnim = CurrentAnim.Walking;
+            if (!hasReached)
             {
                 if(agent.remainingDistance <= agent.stoppingDistance)
                 {
@@ -91,7 +130,8 @@ public class PatrolAI : MonoBehaviour
         while(currentState == "Chase")
         {
             yield return null;
-            if(playerToChase != null)
+            currentAnim = CurrentAnim.Running;
+            if (playerToChase != null)
             {
                 agent.SetDestination(playerToChase.position);
             }

@@ -250,7 +250,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541203386}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -483,6 +483,11 @@ PrefabInstance:
       propertyPath: genericKaren
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1775786300204571741, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 1766b3d47ecc985419acd6de5eaae5e0, type: 3}
     - target: {fileID: 2045590514801112341, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
         type: 3}
       propertyPath: m_RootOrder
@@ -496,12 +501,12 @@ PrefabInstance:
     - target: {fileID: 2045590514801112341, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.661495
+      value: 9.29
       objectReference: {fileID: 0}
     - target: {fileID: 2045590514801112341, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.773361
+      value: -36.4
       objectReference: {fileID: 0}
     - target: {fileID: 2045590514801112341, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
         type: 3}
@@ -825,6 +830,8 @@ MonoBehaviour:
   - {fileID: 600836537}
   - {fileID: 365971250}
   - {fileID: 2136211117}
+  animator: {fileID: 0}
+  currentAnim: 0
 --- !u!114 &1558791329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,6 +956,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616033510}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1986444536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9129283739586875374, guid: 7fcdb68180c47e84a84f2179d4bc1d2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6106797190274947188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1986444541
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986444536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: ffa32356d5e848743967fc6c355d1677, type: 3}
+  m_Controller: {fileID: 9100000, guid: cc76e39f3c55ea340a4224c851ffc64a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2136211116
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +1022,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1295908371258804557, guid: 7fcdb68180c47e84a84f2179d4bc1d2e,
         type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1986444541}
+    - target: {fileID: 1295908371258804557, guid: 7fcdb68180c47e84a84f2179d4bc1d2e,
+        type: 3}
+      propertyPath: currentAnim
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295908371258804557, guid: 7fcdb68180c47e84a84f2179d4bc1d2e,
+        type: 3}
       propertyPath: checkpoints.Array.data[0]
       value: 
       objectReference: {fileID: 600836537}
@@ -1002,6 +1045,11 @@ PrefabInstance:
       propertyPath: checkpoints.Array.data[2]
       value: 
       objectReference: {fileID: 2136211117}
+    - target: {fileID: 3460499758823407161, guid: 7fcdb68180c47e84a84f2179d4bc1d2e,
+        type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8501225571712439636, guid: 7fcdb68180c47e84a84f2179d4bc1d2e,
         type: 3}
       propertyPath: m_RootOrder
@@ -1010,7 +1058,7 @@ PrefabInstance:
     - target: {fileID: 8501225571712439636, guid: 7fcdb68180c47e84a84f2179d4bc1d2e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 27.7
       objectReference: {fileID: 0}
     - target: {fileID: 8501225571712439636, guid: 7fcdb68180c47e84a84f2179d4bc1d2e,
         type: 3}
