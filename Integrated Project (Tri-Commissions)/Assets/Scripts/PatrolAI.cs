@@ -81,13 +81,13 @@ public class PatrolAI : MonoBehaviour
 
     IEnumerator Idle()
     {
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isRunning", false);
+
         while (currentState == "Idle")
         {
             yield return new WaitForSeconds(idleTime);
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", false);
             
-
             nextState = "Patrol";
         }
 
@@ -98,12 +98,13 @@ public class PatrolAI : MonoBehaviour
     {
         agent.SetDestination(checkpoints[currentCheckpointIndex].position);
         bool hasReached = false;
+        animator.SetBool("isWalking", true);
+        animator.SetBool("isRunning", false);
 
-        while(currentState == "Patrol")
+        while (currentState == "Patrol")
         {
             yield return null;
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isRunning", false);
+
             Debug.Log("Walking");
             //Debug.Log(currentAnim);
 
@@ -122,6 +123,7 @@ public class PatrolAI : MonoBehaviour
                     {
                         currentCheckpointIndex = 0;
                     }
+                    animator.SetBool("isWalking" , false);
                 }
             }
         }
@@ -131,15 +133,15 @@ public class PatrolAI : MonoBehaviour
 
     IEnumerator Chase()
     {
-        while(currentState == "Chase")
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isRunning", true);
+
+        while (currentState == "Chase")
         {
             yield return null;
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", true);
+            
             //Debug.Log(currentAnim);
 
-            
-            
             if (playerToChase != null)
             {
                 agent.SetDestination(playerToChase.position);
@@ -147,6 +149,7 @@ public class PatrolAI : MonoBehaviour
             else
             {
                 nextState = "Idle";
+                animator.SetBool("isWalking", false);
             }
         }
         SwitchState();
