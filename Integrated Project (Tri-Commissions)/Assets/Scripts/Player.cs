@@ -86,6 +86,15 @@ public class Player : MonoBehaviour
 
     public GameManager GM;
 
+    // The maximum health
+    public int maxHealth = 100;
+
+    //Current health
+    public int currentHealth;
+
+    //Linking Script Healthbar into player script
+    public HealthBar healthBar;
+
     //[SerializeField]
     //Karen genericKaren;
 
@@ -100,6 +109,8 @@ public class Player : MonoBehaviour
         {
             GM = FindObjectOfType<GameManager>();
         }
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     public void SetRunSpeed(float speed)
@@ -146,7 +157,7 @@ public class Player : MonoBehaviour
                     gameObject.GetComponent<Animator>().Play("RUN");
                 }
             }
-            
+
             GatherInput();
             Look();
             RayCasting();
@@ -297,10 +308,24 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
     }
     
-    
+    //If player Collided with object tagged Death, will receive damage
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Death")
+        {
+            
+            TakeDamage(20);
+        }
+    }
+
+    // If player take damage, health will decrease. If health is 0, player is dead
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
         {
             isDead = true;
         }

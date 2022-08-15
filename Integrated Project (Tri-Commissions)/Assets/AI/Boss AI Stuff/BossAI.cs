@@ -16,7 +16,7 @@ public class BossAI : MonoBehaviour
 
     private int currentCheckpointIndex; 
 
-    private float attackDistance = 1f;
+    private float attackDistance = 2f;
 
     private Transform playerToChase;
 
