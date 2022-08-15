@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject appleUI;
 
-    public GameObject sodaUI;
-
     public GameObject eggUI;
 
     public GameObject listUI;
@@ -35,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     public bool appleCollected = false;
 
-    public bool sodaCollected = false;
+    public bool milkCollected = false;
 
     void Start()
     {
@@ -48,13 +46,10 @@ public class GameManager : MonoBehaviour
         {
             if (eggCollected == true)
             {
-                if (sodaCollected == true)
+                if (appleCollected == true)
                 {
-                    if (appleCollected == true)
-                    {
-                        listUI.SetActive(false);
-                        promptUI.SetActive(true);
-                    }
+                    listUI.SetActive(false);
+                    promptUI.SetActive(true);
                 }
             }
         }
@@ -85,10 +80,11 @@ public class GameManager : MonoBehaviour
         cheeseUI.SetActive(false);
     }
 
-    public void SodaCollected()
+    public void MilkCollected()
     {
-        sodaCollected = true;
-        sodaUI.SetActive(false);
+        milkCollected = true;
+        investigateUI.SetActive(false);
+        runUI.SetActive(true);
     }
 
     public void AppleCollected()

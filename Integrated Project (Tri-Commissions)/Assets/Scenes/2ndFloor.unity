@@ -12647,7 +12647,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh100762
+  m_Name: pb_Mesh2703766
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14225,6 +14225,64 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1222793957}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1228359939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1228359941}
+  - component: {fileID: 1228359940}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1228359940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228359939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce660e959aacf04287d1319bbb661d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 2083086133550671565}
+  itemsCollected: 0
+  cheeseUI: {fileID: 0}
+  appleUI: {fileID: 0}
+  sodaUI: {fileID: 0}
+  eggUI: {fileID: 0}
+  listUI: {fileID: 0}
+  promptUI: {fileID: 0}
+  investigateUI: {fileID: 1328692324}
+  runUI: {fileID: 1328692322}
+  cheeseCollected: 0
+  eggCollected: 0
+  appleCollected: 0
+  milkCollected: 0
+--- !u!4 &1228359941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228359939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 218.81883, y: 8.865869, z: -9.513371}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1240461196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15748,6 +15806,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1328692322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9054483922566712575, guid: 7fbbf3cb0f995c041b439dc8578f49d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1328692318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1328692323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3811150542509113955, guid: 7fbbf3cb0f995c041b439dc8578f49d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1328692318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1328692324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8651728713935250520, guid: 7fbbf3cb0f995c041b439dc8578f49d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1328692318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339523883
 GameObject:
   m_ObjectHideFlags: 0
@@ -19515,6 +19591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1873501598}
+  - component: {fileID: 1873501599}
   m_Layer: 0
   m_Name: Milk
   m_TagString: Untagged
@@ -19538,6 +19615,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1873501599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873501597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff514e8b2f209f44a942cdd200ea021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRenderer: {fileID: 0}
+  newColors: []
+  collectUI: {fileID: 1328692323}
 --- !u!1001 &1882831471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22303,6 +22395,16 @@ PrefabInstance:
       objectReference: {fileID: 1328692321}
     - target: {fileID: 1443991322714658038, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
         type: 3}
+      propertyPath: milk
+      value: 
+      objectReference: {fileID: 1873501597}
+    - target: {fileID: 1443991322714658038, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
+        type: 3}
+      propertyPath: collectUI
+      value: 
+      objectReference: {fileID: 1328692323}
+    - target: {fileID: 1443991322714658038, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
+        type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1299696948}
@@ -22368,6 +22470,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3df42881dc69e49ab4f5064b4b8fb9, type: 3}
+--- !u!1 &2083086133550671565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9134903649766940291, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2083086133550671564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5957254203076993259 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2045590514801112341, guid: 9f3df42881dc69e49ab4f5064b4b8fb9,

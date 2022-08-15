@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
 
     Rigidbody rb;
 
+    public GameObject collectUI;
+
     public float y;
 
     public GameObject playerTransform;
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
 
     public GameObject cheese;
 
-    public GameObject soda;
+    public GameObject milk;
 
     public GameObject apple;
 
@@ -240,47 +242,46 @@ public class Player : MonoBehaviour
         Debug.Log("Player is sprinting");
     }
 
-    public void OnInteract()
-    {
+    void OnTriggerStay(Collider other)
+    {   
 
-        interact = true;
-
-        if (cheese.gameObject.tag == "CheeseCollectible")
+        if (other.gameObject.tag == "CheeseCollectible")
         {
-            if (interact)
+            if (Input.GetKey(KeyCode.E) == true)
             {
                 cheese.SetActive(false);
                 GM.CheeseCollected();
+                collectUI.SetActive(false);
             }
-
         }
-        if (soda.gameObject.tag == "SodaCollectible")
+        if (other.gameObject.tag == "AppleCollectible")
         {
-            if (interact)
-            {
-                soda.SetActive(false);
-                GM.SodaCollected();
-            }
-
-        }
-        if (apple.gameObject.tag == "AppleCollectible")
-        {
-            if (interact)
+            if (Input.GetKey(KeyCode.E) == true)
             {
                 apple.SetActive(false);
                 GM.AppleCollected();
+                collectUI.SetActive(false);
             }
         }
-        if (egg.gameObject.tag == "EggCollectible")
+        if (other.gameObject.tag == "EggCollectible")
         {
-            if (interact)
+            if (Input.GetKey(KeyCode.E) == true)
             {
                 egg.SetActive(false);
                 GM.EggCollected();
+                collectUI.SetActive(false);
             }
         }
-
+        if (other.gameObject.tag == "MilkCollectible")
+            if (Input.GetKey(KeyCode.E) == true)
+            {
+                milk.SetActive(false);
+                GM.MilkCollected();
+                collectUI.SetActive(false);
+                //radelle add any extra stuff that happens when milk is collected over here
+            }
     }
+
     void DeathPrompt()
     {
         deathScreen.SetActive(true);
