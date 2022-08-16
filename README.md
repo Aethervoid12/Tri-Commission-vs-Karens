@@ -1,6 +1,6 @@
 # Tri-Commission-vs-Karens
 
-##GroceryRUN Integrated Project
+## GroceryRUN Integrated Project
 
 ## Controls
 W - Forward  
