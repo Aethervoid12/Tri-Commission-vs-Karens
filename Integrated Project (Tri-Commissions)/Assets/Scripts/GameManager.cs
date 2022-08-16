@@ -61,10 +61,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //
+        //if second floor isn't unlocked
         if (!secondFloor)
         {
-            //
+            //check if the necessary items are collected to access second floor
             if (cheeseCollected && appleCollected && eggCollected)
             {
                 // Show list UI
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
                 // Show prompt UI
                 promptUI.SetActive(true);
 
-                //
+                //set second floor as unlocked
                 secondFloor = true;
             }
         }

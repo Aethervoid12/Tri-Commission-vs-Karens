@@ -462,7 +462,9 @@ public class Player : MonoBehaviour
     }
 }
 public static class Helpers
-{
+{   
+    //rotate the player movement axis based on the angle specified (to make it feel like a proper isometric game)
     private static Matrix4x4 _isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 90, 0));
+    //vector to help detemine how to get the player to rotate in the scene
     public static Vector3 ToIso(this Vector3 input) => _isoMatrix.MultiplyPoint3x4(input);
 }

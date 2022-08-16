@@ -31,7 +31,7 @@ public class Pause : MonoBehaviour
         //hide pause menu
         pauseMenu.SetActive(false);
 
-        // 
+        //resume game time
         Time.timeScale = 1f;
 
         // Set game to resume
@@ -43,7 +43,7 @@ public class Pause : MonoBehaviour
         // Display pause menu
         pauseMenu.SetActive(true);
 
-        //
+        //pause game time
         Time.timeScale = 0f;
 
         // Set game to paused
