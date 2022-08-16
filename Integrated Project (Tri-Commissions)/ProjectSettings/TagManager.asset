@@ -16,6 +16,7 @@ TagManager:
   - MilkCollectible
   - NPC
   - Karen
+  - Arcade
   layers:
   - Default
   - TransparentFX

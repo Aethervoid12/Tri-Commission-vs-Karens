@@ -222,6 +222,13 @@ public class Player : MonoBehaviour
                         }
                     }
                 }
+                 if (hitInfo.transform.tag == "Arcade")
+                {
+                    if (press)
+                    {
+                            hitInfo.transform.GetComponent<SceneControl>().Interact();
+                    }
+                }
             }
             press = false;
 
