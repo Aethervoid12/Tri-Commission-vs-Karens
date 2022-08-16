@@ -16,20 +16,23 @@ public class Player : MonoBehaviour
     Vector3 rotationInput = Vector3.zero;
 
     /// <summary>
-    /// The Vector3 used to store the left/right mouse input of the user.
+    /// The Vector3 used to store the space input of the player
     /// </summary>
     Vector3 jumpInput = Vector3.zero;
 
     /// <summary>
-    /// The movement speed of the player per second.
+    /// The current speed of the player per second.
     /// </summary>
     public float moveSpeed = 5f;
 
     /// <summary>
-    /// The movement speed of the player per second.
+    /// The running speed of the player per second.
     /// </summary>
     public float runSpeed = 5f;
 
+    /// <summary>
+    /// The walking speed of player per second
+    /// </summary>
     public float defaultSpeed = 5f;
 
     /// <summary>
@@ -42,6 +45,9 @@ public class Player : MonoBehaviour
     /// </summary>
     bool isDead = false;
 
+    /// <summary>
+    /// Int
+    /// </summary>
     float interactionDistance = 4f;
 
     bool interact = false;
@@ -105,8 +111,6 @@ public class Player : MonoBehaviour
     //Linking Script Healthbar into player script
     public HealthBar healthBar;
 
-    //[SerializeField]
-    //Karen genericKaren;
 
     void Start()
     {
@@ -189,31 +193,41 @@ public class Player : MonoBehaviour
 
     public void RayCasting()
     {
+            // Contain info of object that was hit
             RaycastHit hitInfo;
+            
+            // Check what is in front of player
             if (Physics.Raycast(transform.position, transform.forward, out hitInfo, interactionDistance))
             {
-
+                // If raycast hits object with "Elevator" tag
                 if (hitInfo.transform.tag == "Elevator")
                 {
+                    // And if player clicks on object
                     if(press)
                     {
+                        // And if player has collected all 3 collectibles: apple, egg and cheese
                         if(appleCollection && eggCollection && cheeseCollection)
                         {
+                            // Send player to next scene
                             hitInfo.transform.GetComponent<SceneControl>().Interact();
                         }
                         else
                         {
-                        Debug.Log("failure");
+                            Debug.Log("failure");
                         }
                     }
 
                 }
+                // If raycast hits object with "Elevator2" tag
                 if (hitInfo.transform.tag == "Elevator2")
                 {
+                    // And if player clicks on object
                     if (press)
                     {
+                        // And if player has collected milk
                         if (milkCollection)
                         {
+                            // Send player to next scene
                             hitInfo.transform.GetComponent<SceneControl>().Interact();
                         }
                         else
@@ -222,16 +236,21 @@ public class Player : MonoBehaviour
                         }
                     }
                 }
-                 if (hitInfo.transform.tag == "Arcade")
+
+                // If raycast hits object with "Elevator2" tag
+                if (hitInfo.transform.tag == "Arcade")
                 {
+                    // And if player clicks on object
                     if (press)
-                    {
-                            hitInfo.transform.GetComponent<SceneControl>().Interact();
+                    {   
+                        // Send player to next scene
+                        hitInfo.transform.GetComponent<SceneControl>().Interact();
                     }
                 }
             }
-            press = false;
 
+            // No object is clicked by default
+            press = false;
     }
 
 
@@ -249,6 +268,7 @@ public class Player : MonoBehaviour
     {
         headRotationInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
+
     //Apply the rotation multiplied by the rotation speed.
     private void Look()
     {
@@ -257,6 +277,7 @@ public class Player : MonoBehaviour
         var rot = Quaternion.LookRotation(headRotationInput.ToIso(), Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, rotationSpeed * Time.deltaTime);
     }
+
     // Apply the movement vector multiplied by movement speed to the player's position.
     private void Move()
     {
@@ -270,20 +291,22 @@ public class Player : MonoBehaviour
     /// <param name="collision">Holds the information of the collision.</param>
 
 
+    // Link mouse left-click binding to script from player input
     void OnFire()
     {
         press = true;
     }
 
+    // Link space key binding to script from player input
     void OnJump()
     {
         if (isGrounded)
             _staminaController.StaminaJump();
     }
 
+    //Link left shift key binding to script from player input
     void OnSprint()
     {
-
         moveSpeed = runSpeed;
         _staminaController.Sprinting();
         // right after we apply the double speed or whatever, we set the bool to true so it can't do it over and over again.
@@ -292,71 +315,119 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {   
-
+        // Collect cheese collectible
         if (other.gameObject.tag == "CheeseCollectible")
         {
+            // If player presses E on keyboard
             if (Input.GetKey(KeyCode.E) == true)
             {
+                // Cheese disappears from scene
                 cheese.SetActive(false);
+
+                // Store that cheese is collected
                 GM.CheeseCollected();
+
+                // Remove cheese from inventory
                 collectUI.SetActive(false);
+
+                //Cheese is collected
                 cheeseCollection = true;
             }
         }
+
+        // Collect apple collectible
         if (other.gameObject.tag == "AppleCollectible")
         {
+            // If player presses E on keyboard
             if (Input.GetKey(KeyCode.E) == true)
             {
+                // Apple disappears from scene
                 apple.SetActive(false);
+
+                // Store that apple is collected
                 GM.AppleCollected();
+
+                // Remove apple from inventory
                 collectUI.SetActive(false);
+
+                // Apple is collected
                 appleCollection = true;
             }
         }
+
+        // Collect egg collectible
         if (other.gameObject.tag == "EggCollectible")
         {
+            // If player presses E on keyboard
             if (Input.GetKey(KeyCode.E) == true)
             {
+                // Egg disappears from scene
                 egg.SetActive(false);
+
+                // Store that egg is collected
                 GM.EggCollected();
+
+                // Remove egg from inventory
                 collectUI.SetActive(false);
+
+                // Egg is collected
                 eggCollection = true;
             }
         }
+
+        // Collect milk collectible
         if (other.gameObject.tag == "MilkCollectible")
         {
+            // If player presses E on keyboard
             if (Input.GetKey(KeyCode.E) == true)
             {
+                // Milk disappears from scene
                 milk.SetActive(false);
+
+                //Store that milk is collected
                 GM.MilkCollected();
+
+                // Remove milk from inventory
                 collectUI.SetActive(false);
+
+                // Milk is collected
                 milkCollection = true;
             }
         }
+
+        // Talk to NPC
         if (other.gameObject.tag == "NPC")
         {
+            // If player presses E on keyboard
             if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Mouse0))
             {
+                // NPC dialogue plays
                 loadDialogue();
             }
         }
     }
 
+    // Player death
     void DeathPrompt()
     {
+        // Death UI shows up
         deathScreen.SetActive(true);
+
+        // Destroy player
         Destroy(gameObject);
     }
     
-    //If player Collided with object tagged Death, will receive damage
+    
     void OnCollisionEnter(Collision collision)
     {
+        // If player Collided with object tagged Death, will receive 20 damage
         if (collision.gameObject.tag == "Death")
         {          
             TakeDamage(20);
         }
 
-        if(collision.gameObject.tag == "Karen")
+        // If player Collided with object tagged Karen, will receive 10 damage
+        if (collision.gameObject.tag == "Karen")
         {
             TakeDamage(10);
         }
@@ -365,20 +436,26 @@ public class Player : MonoBehaviour
     // If player take damage, health will decrease. If health is 0, player is dead
     void TakeDamage(int damage)
     {
+        // Damage taken decreases current player health
         currentHealth -= damage;
 
+        // Set current health in health bar
         healthBar.SetHealth(currentHealth);
 
+        // If player has 0 health, player dies
         if (currentHealth <= 0)
         {
             isDead = true;
         }
     }
 
+    // Shows dialogue UI
     public void loadDialogue()
     {
         dialogueUI.SetActive(true);
     }
+
+    // Hides dialogue UI
     public void endDialogue()
     {
         dialogueUI.SetActive(false);

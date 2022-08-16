@@ -5,25 +5,41 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
+    // Set MeshRenderer to variable myRenderer
     public MeshRenderer myRenderer;
+
+    // Set Color array to variable newColors
     public Color[] newColors;
+
+    // Count number of colours needed to change to
     private int colorIndex = 0;
+
+    // Set color before changing
     public Color startColor;
+
+    // Whether player has interacted with collectible
     bool interact;
+
+    // Assign collectibles to collectUI variable
     public GameObject collectUI;
 
     void Start()
     {
+        // Get material of object
         startColor = GetComponent<Renderer>().material.color;
     }
 
     void OnTriggerEnter(Collider other)
     {
-
+        // If player enters trigger
         if (other.gameObject.tag == "Player")
         {
+            // Change color of object
             myRenderer.material.color = newColors[colorIndex];
+
             Debug.Log("Player collision");
+
+            // Display collect UI
             collectUI.SetActive(true);
             
         }
@@ -32,18 +48,19 @@ public class Collectible : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        //If player exits trigger
         if (other.gameObject.tag == "Player")
         {
+            // Change back to initial color
             myRenderer.material.color = startColor;
+
             Debug.Log("End collision");
+
+            //Hide collect UI
             collectUI.SetActive(false);
         }
     }
 
-    //void OnTriggerExit(Collider other)
-    //{
-    //    myRenderer.material.color = startColor;
-    //}
 
     void IdleComplete()
     {
@@ -53,6 +70,7 @@ public class Collectible : MonoBehaviour
 
     public void DestroyCollectible()
     {
+        //Destroy collectible after it has been collected
         Destroy(gameObject);
     }
 

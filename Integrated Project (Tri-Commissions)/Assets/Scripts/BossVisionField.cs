@@ -8,7 +8,8 @@ public class BossVisionField : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        // If player exits vision, AI does not see player
+        if (other.tag == "Player")
         {
             attachedAI.SeePlayer(null);
         }
@@ -16,16 +17,18 @@ public class BossVisionField : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        // If player enters vision, AI sees player
+        if (other.tag == "Player")
         {
             attachedAI.SeePlayer(other.transform);
             Debug.Log("Player detected");
         }
     }
 
-        private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player")
+        // If player stays in vision, AI sees player
+        if (other.tag == "Player")
         {
             attachedAI.SeePlayer(other.transform);
             Debug.Log("Player detected");

@@ -10,14 +10,17 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
+        // if player presses escape key
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isGamePaused)
             {
+                //if the game is paused, it will resume
                 ResumeGame();
             }
             else
             {
+                //if the game is not paused, it will pause
                 PauseGame();
             }
         }
@@ -25,15 +28,25 @@ public class Pause : MonoBehaviour
 
     public void ResumeGame()
     {
+        //hide pause menu
         pauseMenu.SetActive(false);
+
+        // 
         Time.timeScale = 1f;
+
+        // Set game to resume
         isGamePaused = false;
     }
 
     public void PauseGame()
     {
+        // Display pause menu
         pauseMenu.SetActive(true);
+
+        //
         Time.timeScale = 0f;
+
+        // Set game to paused
         isGamePaused = true;
     }
 }

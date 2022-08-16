@@ -24,10 +24,12 @@ public class StaminaController : MonoBehaviour
     [SerializeField] private Image staminaProgressUI = null;
     [SerializeField] private CanvasGroup sliderCanvasGroup = null;
 
+    // Link player controller to player script
     private Player playerController;
 
     private void Start()
     {
+        //Get Player script
         playerController = GetComponent<Player>();
     }
 
@@ -35,6 +37,7 @@ public class StaminaController : MonoBehaviour
     {
         if (!weAreSprinting)
         {
+            //if player stamina is less than maximum, replenish stamina
             if (playerStamina <= maxStamina - 0.01)
             {
                 playerStamina += staminaRegen * Time.deltaTime;
@@ -57,6 +60,7 @@ public class StaminaController : MonoBehaviour
     {
         if (hasRegenerated)
         {
+            //drain stamina while sprinting
             weAreSprinting = true;
             playerStamina -= staminaDrain * Time.deltaTime;
             UpdateStamina(1);
@@ -75,6 +79,7 @@ public class StaminaController : MonoBehaviour
     {
         if (playerStamina >= jumpCost)
         {
+            //drain stamina while jumping
             playerStamina -= jumpCost;
             //allow the player to jump
             playerController.PlayerJump();
@@ -87,6 +92,7 @@ public class StaminaController : MonoBehaviour
     }
     void UpdateStamina(int value)
     {
+        //set stamina bar fill according to progress
         staminaProgressUI.fillAmount = playerStamina / maxStamina;
 
         if (value == 0)

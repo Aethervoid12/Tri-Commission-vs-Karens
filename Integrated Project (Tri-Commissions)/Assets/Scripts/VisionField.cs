@@ -8,6 +8,7 @@ public class VisionField : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        // If player exits vision, AI does not see player
         if(other.tag == "Player")
         {
             attachedAI.SeePlayer(null);
@@ -16,6 +17,7 @@ public class VisionField : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // If player enters vision, AI sees player
         if (other.tag == "Player")
         {
             attachedAI.SeePlayer(other.transform);
@@ -24,6 +26,7 @@ public class VisionField : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        // If player stays in vision, AI sees player
         if (other.tag == "Player")
         {
             attachedAI.SeePlayer(other.transform);
