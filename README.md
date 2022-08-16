@@ -49,4 +49,8 @@ E - Collect Objects or Interact with NPC
 
 ### Other External Assets
 - Mixamo Character Models  
+1. Joe
+2. Louise
+3. Zombiegirl W Kurniawan
+4. Kate
 - Mixamo Animations  
