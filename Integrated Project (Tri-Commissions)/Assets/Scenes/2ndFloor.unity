@@ -162,7 +162,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29726
+  m_Name: pb_Mesh621628
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21427,6 +21427,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1812139676}
     m_Modifications:
+    - target: {fileID: 1365490821163860369, guid: 7fbbf3cb0f995c041b439dc8578f49d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3377739502311886358, guid: 7fbbf3cb0f995c041b439dc8578f49d2,
         type: 3}
       propertyPath: m_RootOrder
@@ -21440,7 +21445,7 @@ PrefabInstance:
     - target: {fileID: 3811150542509113955, guid: 7fbbf3cb0f995c041b439dc8578f49d2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4017293702384848984, guid: 7fbbf3cb0f995c041b439dc8578f49d2,
         type: 3}
@@ -28324,12 +28329,27 @@ PrefabInstance:
     - target: {fileID: 7513575602628439902, guid: ed05918176da0a34794ddb83d1ade2d6,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.06903167
+      value: 0.102967784
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513575602628439902, guid: ed05918176da0a34794ddb83d1ade2d6,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.091000065
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513575602628439902, guid: ed05918176da0a34794ddb83d1ade2d6,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.009548119
       objectReference: {fileID: 0}
     - target: {fileID: 7513575602628439902, guid: ed05918176da0a34794ddb83d1ade2d6,
         type: 3}
       propertyPath: m_Center.y
-      value: -0.02731837
+      value: -0.0103505645
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513575602628439902, guid: ed05918176da0a34794ddb83d1ade2d6,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.040330645
       objectReference: {fileID: 0}
     - target: {fileID: 7513575602628439902, guid: ed05918176da0a34794ddb83d1ade2d6,
         type: 3}
