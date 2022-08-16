@@ -54,3 +54,13 @@ E - Collect Objects or Interact with NPC
 3. Zombiegirl W Kurniawan
 4. Kate
 - Mixamo Animations  
+1. Standard Idle
+2. Standard Walking
+3. Standard Run
+4. Idle
+5. Zombie Punching
+6. Running
+7. Walking
+8. Orc Idle
+9. Mutant Walking
+10. Zombie Attack
