@@ -13,7 +13,8 @@ Left Click - Interact with Elevator/Arcade Objects and NPC
 E - Collect Objects or Interact with NPC  
 
 ## Limitations & Bugs
-- Stamina Bar only works when jumping, sprinting can't affect it right now  
+- Stamina Bar only works when pressing space, sprinting can't affect it right now
+- Jumping doesn't work right now, due to some bugs and time constraints. However, it isn't a necessary action to complete the game, so it is left as is in an incomplete state (pressing jump deducts stamina but doesn't jump).
 - Health loss is detected via collision rather than by the AI attacking, so the time the damage is taken and the time of the attack animation is desynced  
 - Going to the Arcade scene via 1st Floor after collecting the necessary objects to enter the 2nd Floor will reset the 1st Floor upon exiting the Arcade Scene. This is unpreventable as it is loading a new scene and removes the settings of the session before.  
 - Talking with NPC doesn't remove the dialogue box unless you click on the dialogue box, was intended that clicking anywhere would remove it, but we ran out of time to implement this
